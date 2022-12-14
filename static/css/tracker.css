@@ -1,0 +1,35 @@
+body{
+    background-color: rgba(5,33,37,0.97);
+    text-align: center;
+}
+.upload-file{
+    background-color: azure;
+    font-size: 20px;
+}
+.content{
+    text-align: center;
+    align-content: center;
+    width: 80%;
+    margin: auto;
+}
+.single-header{
+    background-color: navajowhite;
+}
+.single-header p{
+    width: 60%;
+    display: inline-block;
+}
+.single-header a{
+    text-decoration: none;
+    outline: none;
+}
+.single{
+    background-color: #40cbb8;
+    border-top: 2px solid blue;
+    vertical-align: center;
+}
+.origin-hide{
+    display: none;
+    background-color: #c1c4cb;
+    transition-delay: 0.4s;
+}
