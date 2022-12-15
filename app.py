@@ -3,11 +3,25 @@ import os.path
 from flask import Flask
 from flask import render_template, request
 from Utils.timer_get_cookies import start_requests
+from flask_apscheduler import APScheduler
+
+
+class Config:
+    SCHEDULER_API_ENABLED = True
+
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 app.config['UPLOAD_FOLDER'] = "Uploads"
 if not os.path.exists(app.config['UPLOAD_FOLDER']):
     os.mkdir(app.config['UPLOAD_FOLDER'])
+
+app.config.from_object(Config())
+scheduler = APScheduler()
+# if you don't wanna use a config, you can set options here:
+# scheduler.api_enabled = True
+scheduler.init_app(app)
+scheduler.start()
 
 
 @app.route('/')
@@ -55,6 +69,11 @@ def parseExcel():
     print(packer_numbers)
     # start_requests('YT2222021272078719')
     return start_requests(packer_numbers[:9])
+
+
+@scheduler.task('interval', id='1', seconds=10)
+def test_print():
+    print('scheduler')
 
 
 if __name__ == '__main__':

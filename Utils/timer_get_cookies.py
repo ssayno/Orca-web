@@ -3,7 +3,7 @@ from datetime import datetime
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import json
-
+import browsercookie
 import requests
 
 
@@ -42,7 +42,7 @@ def start_requests(packer_numbers: list):
     headers = {
         "Content-Length": f"{len(data)}",
         "Referer": "https://t.17track.net/zh-cn",
-        'Cookie': 'Last-Event-ID=657572742f3835322f66323364373535313538312f3065312d3a653365343433623636363a3330393037363738353a657572743a72656e6961746e6f632d7475706e692d71792030312d6c61746e6f7a69726f682d6e696772616d14230f7e53a36d3b050d'
+        'Cookie': 'country=CN; _yq_bid=G-7338B1A549F3BCD1; v5_TranslateLang=en; v5_Culture=en; _ga=GA1.2.932552877.1671092442; _gid=GA1.2.1288259628.1671092442; __gads=ID=388306af4f105670:T=1671092442:S=ALNI_MZkdok5ZLCmg709WXXTI0DtKZbzKg; __gpi=UID=00000b9100565ce3:T=1671092442:RT=1671092442:S=ALNI_MZnTu9Ke31QZ6DNNrb1kYE-ZlUy3Q; _gat_cnGa=1; _gat=1; _ati=4001940269729; uid=A31627EFEAE14A14B021B7E9A4B432BB; _yq_rc_=yq.16.2105.en.0.0.409970913657809286G; Last-Event-ID=657572742f3164352f66383735323935313538312f3065312d3a383136356534663065333a3530313834383433383a65736c61663a656469682067736d2d616964656d2d756e656d2d6e776f64706f72642d7179c1302e9cc62128cd9e5'
     }
     r = requests.post('https://t.17track.net/track/restapi', data=data, headers=headers)
     # with open("result.json", 'w+', encoding='U8') as f:
@@ -96,6 +96,6 @@ def use_selenium_to_get_cookie():
 
 if __name__ == '__main__':
     test_for_get_json()
-    use_selenium_to_get_cookie()
+    # use_selenium_to_get_cookie()
     # timer = Timer(10, get_cookies)
     # timer.start()
