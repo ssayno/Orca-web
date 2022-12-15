@@ -2,6 +2,25 @@ body{
     background-color: rgba(5,33,37,0.97);
     text-align: center;
 }
+#count{
+    background-color: rgba(126,180,36,0.97);
+    font-size: 30px;
+    height: 40px;
+    text-align: center;
+    margin-top: 30px;
+}
+#prefix{
+    display: inline-block;
+    width: 100px;
+    height: 100%;
+    background-color: red;
+}
+#postfix{
+    display: inline-block;
+    width: 100px;
+    height: 100%;
+    background-color: blue;
+}
 .upload-file{
     background-color: azure;
     font-size: 20px;
@@ -9,8 +28,20 @@ body{
 #content{
     text-align: center;
     align-content: center;
-    width: 80%;
+    width: 100%;
     margin: auto;
+}
+.single{
+    background-color: #40cbb8;
+    display: inline-block;
+    border-top: 2px solid blue;
+    vertical-align: center;
+    width: 20%;
+    height: 300px;
+    overflow: auto;
+    border-left: 2px solid red;
+    border-right: 2px solid red;
+    margin: 0 10px;
 }
 .single-header{
     background-color: navajowhite;
@@ -22,11 +53,6 @@ body{
 .single-header a{
     text-decoration: none;
     outline: none;
-}
-.single{
-    background-color: #40cbb8;
-    border-top: 2px solid blue;
-    vertical-align: center;
 }
 .origin-hide{
     display: none;

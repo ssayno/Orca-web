@@ -47,7 +47,6 @@ def start_requests(packer_numbers: list):
     r = requests.post('https://t.17track.net/track/restapi', data=data, headers=headers)
     # with open("result.json", 'w+', encoding='U8') as f:
     #     json.dump(r.json(), f, indent=4, ensure_ascii=False)
-    print(r.json())
     return parse_yuntu_json(r.json())
 
 
