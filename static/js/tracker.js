@@ -24,13 +24,14 @@ socketio.on('update', function (resultJson) {
     } else if (type_ === "add") {
         console.log("add");
         spanPrefix.innerHTML = parseInt(spanPrefix.innerHTML) + packages_count
+        console.log("get", jsonData);
         for (let singleJson of jsonData) {
             createDiv(singleJson, contentTag);
         }
+        socketio.emit(
+            'update', "fin"
+        )
     }
-    socketio.emit(
-        'update', "fin"
-    )
 })
 
 function popAdd(message) {
@@ -59,6 +60,7 @@ function toggleTagAddEL(ATag) {
 
 /* upload file usage*/
 function createDiv(singleJson, parent) {
+    console.log("start create");
     console.log(singleJson);
     let number = singleJson['number'];
     let latestTime = singleJson['latest_event']['time_iso'];

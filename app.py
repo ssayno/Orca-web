@@ -61,8 +61,18 @@ def parseExcel():
     return '?'
 
 
+@socketio.on('update')
+def change_global_variable(message):
+    global Flag
+    if message == 'fin':
+        Flag = True
+    else:
+        Flag = False
+
+
 @scheduler.task('interval', id='1', seconds=600)
 def test_print():
+    global Flag
     print("start >>>>>>")
     current_path = os.path.dirname(__file__)
     db_file = os.path.join(current_path, 'static', 'Data', 'orca.db')
@@ -104,16 +114,22 @@ def test_print():
                         break
                     else:
                         result = start_requests(packages[start: end])
+                        print(packages)
                         socketio.emit('update', json.dumps({
                             'type': 'add',
                             'data': result,
                             'count': end - start
                         }))
                     start += 9
-                    
                     time.sleep(10)
+                    if not Flag:
+                        print("browser not work")
+                        break
+                    Flag = False
+
         cursor.close()
 
 
 if __name__ == '__main__':
+    Flag = True
     socketio.run(app, allow_unsafe_werkzeug=True)
