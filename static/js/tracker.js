@@ -1,4 +1,5 @@
 const socketio = io();
+
 socketio.on('connect', function (message) {
     console.log("show I'm connected");
 })
@@ -14,7 +15,7 @@ socketio.on('update', function (resultJson) {
     if (type_ === "init") {
         console.log("clear");
         contentTag.querySelectorAll('div.single').forEach(
-            function (node, index){
+            function (node, index) {
                 node.remove();
             }
         )
@@ -27,7 +28,22 @@ socketio.on('update', function (resultJson) {
             createDiv(singleJson, contentTag);
         }
     }
+    socketio.emit(
+        'update', "fin"
+    )
 })
+
+function popAdd(message) {
+    layui.use('layer', function () {
+        const layer = layui.layer;
+        layer.open({
+            type: 1,
+            title: '详细信息',
+            area: ['800px', '1000px'],
+            content: message
+        });
+    });
+}
 
 function toggleTagAddEL(ATag) {
     ATag.addEventListener('click', function (event) {
@@ -53,19 +69,17 @@ function createDiv(singleJson, parent) {
     singleDiv.setAttribute('class', 'single');
     const singleDivHeader = document.createElement('div');
     singleDivHeader.setAttribute('class', 'single-header');
-    const singleDivHeaderP = document.createElement('p');
     // a tag event listener
-    const spanTag = document.createElement('span');
-    const toggleATag = document.createElement('a');
-    toggleATag.setAttribute('href', 'javascript:void(0);');
-    toggleATag.innerHTML = 'x';
-    singleDivHeaderP.innerHTML = number + latestTime;
-    toggleTagAddEL(toggleATag);
-    const originHiddenDiv = document.createElement('div');
-    originHiddenDiv.setAttribute('class', 'origin-hide');
+    const otherDiv = document.createElement('div');
+    otherDiv.setAttribute('class', 'others');
+    const moreButton = document.createElement('button');
+    moreButton.setAttribute('class', 'show-more');
+    moreButton.innerHTML = 'More';
+    singleDivHeader.innerHTML = `<p>${number}</p><p>${latestTime}</p>`;
+    // toggleTagAddEL(toggleATag);
     const ulElement = document.createElement('ul');
+    let _event_content = "";
     for (let _event of events) {
-        let _event_content = "";
         for (let key in _event) {
             _event_content += `${key}: ${_event[key]}----`
         }
@@ -73,13 +87,14 @@ function createDiv(singleJson, parent) {
         liElement.innerHTML = _event_content;
         ulElement.appendChild(liElement);
     }
+    // add event listener
+    moreButton.addEventListener('click', () => {
+        popAdd(ulElement.outerHTML)
+    })
     // append child
     singleDiv.appendChild(singleDivHeader);
-    singleDiv.appendChild(originHiddenDiv);
-    singleDivHeader.appendChild(singleDivHeaderP);
-    singleDivHeader.appendChild(spanTag);
-    spanTag.appendChild(toggleATag);
-    originHiddenDiv.appendChild(ulElement);
+    singleDiv.appendChild(otherDiv);
+    otherDiv.appendChild(moreButton);
     //
     parent.appendChild(singleDiv);
 }

@@ -1,0 +1,20 @@
+body{
+    background-color: rgba(146,203,202,0.97);
+}
+div.main-page{
+    position: absolute;
+    background-color: #01AAED;
+    border-radius: 10px;
+    font-size: 20px;
+    width: 800px;
+    height: 600px;
+    outline: none;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+button{
+    background-color: red;
+}

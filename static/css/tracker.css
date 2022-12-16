@@ -2,6 +2,23 @@ body{
     background-color: rgba(5,33,37,0.97);
     text-align: center;
 }
+input#only-file{
+    display: none;
+}
+label#for-file{
+    border-radius: 8px;
+    margin: 10px 0;
+    padding: 0 10px;
+    font-size: 1.25em;
+    font-weight: 700;
+    color: white;
+    background-color: black;
+    display: inline-block;
+}
+label#for-file:hover{
+    background-color: red;
+    cursor: pointer;
+}
 #count{
     background-color: rgba(126,180,36,0.97);
     font-size: 30px;
@@ -36,9 +53,7 @@ body{
     display: inline-block;
     border-top: 2px solid blue;
     vertical-align: center;
-    width: 20%;
-    height: 300px;
-    overflow: auto;
+    width: 300px;
     border-left: 2px solid red;
     border-right: 2px solid red;
     margin: 0 10px;
@@ -58,4 +73,17 @@ body{
     display: none;
     background-color: #c1c4cb;
     transition-delay: 0.4s;
+}
+.others{
+    text-align: center;
+}
+.show-more{
+    display: inline-block;
+    background-color: #01AAED;
+    font-size: 20px;
+    width: 60px;
+    height: 40px;
+    outline: none;
+    border: none;
+    margin: auto;
 }

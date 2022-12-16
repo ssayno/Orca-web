@@ -35,7 +35,7 @@ scheduler.start()
 
 @app.route('/')
 def hello_world():  # put application's code here
-    return 'Hello World!'
+    return render_template('index.html')
 
 
 @app.route('/tracker')
@@ -110,6 +110,7 @@ def test_print():
                             'count': end - start
                         }))
                     start += 9
+                    
                     time.sleep(10)
         cursor.close()
 
